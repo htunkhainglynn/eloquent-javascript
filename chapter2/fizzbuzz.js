@@ -6,5 +6,5 @@ for (var i = 1; i <= 100; i++) {
     if (i % 5 === 0) {
         message += "Buzz";
     } 
-    console.log(message || i);
+    console.log(message || i);  // "" is undefined
 }
