@@ -1,0 +1,52 @@
+<html>
+<script>
+    // function div (a, b, callback) {
+    //     setTimeout(() => {
+    //         if (isNaN(a) || isNaN(b)) {
+    //             callback(new Error('a or b is not a number'));
+    //         }
+    //         callback(undefined, a / b);
+    //     }, 1000);
+    // }
+
+    // div(10, 2, (err, result) => {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         console.log(result);
+    //     }
+    // });
+
+    // div(10, NaN, (err, result) => {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         console.log(result);
+    //     }
+    // });
+
+    // using promise
+    function divPromise(a, b) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (isNaN(a) || isNaN(b)) {
+                    reject(new Error('a or b is not a number'));
+                }
+                resolve(a / b);
+            }, 1000);
+        });
+    }
+
+    divPromise(10, 2)
+        .then(result => {  // this then works like map
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(result);
+                }, 2000);
+            });
+        }) // return type will be Promise<Promise>, so next then works like flatMap
+        .then(result => console.log("result:", result), err => console.log(err));  // using Railway Oriented Programming
+
+</script>
+
+</html>

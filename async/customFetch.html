@@ -1,0 +1,25 @@
+<html>
+    <script>
+        function customFetch(url) {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', url);
+                xhr.send();
+
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        resolve(xhr.response);
+                    } else {
+                        reject(new Error(xhr.statusText));
+                    }
+                };
+                xhr.onerror = () => {
+                    reject(new Error(xhr.statusText));
+                };
+            });
+        }
+
+        customFetch('https://jsonplaceholder.typicode.com/todos/1')  // fetch is just a wrapper of XMLHttpRequest using Promise
+            .then(result => console.log(result), err => console.log(err));
+    </script>
+</html>
