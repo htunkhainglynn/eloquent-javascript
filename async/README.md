@@ -6,7 +6,7 @@
 - In synchronous model, you need to wait line 1 even if they are not related.
 - So using async makes not to wait in this situation.
 - It becomes efficient, but not fast. If line 1 takes 2 seconds to run, it takes 2 seconds in async too.
-- But when will the async function returns data? No one knows. So, we need callbacks to run if the async function is done. 
+- But when will the async function returns data? No one knows. So, we need callbacks to run when the async function is done. 
 
 ### Problems with callbackes.
 - What if the callback needs another callback? It becomes callback hell and code becomes hard to read.
@@ -16,7 +16,7 @@
 
 ### Promise comes to help.
 - Promise is a object that represents a future value.
-- We can remove callback hell with Promise.
+- We can remove callback hell with Promise by chaining. So it becomes easy to read.
 - Promise has 3 states.
   - Pending: Initial state, not fulfilled or rejected.
   - Fulfilled: Operation completed successfully.
