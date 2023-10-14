@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const doSomething = (callback) => {
+            console.log('execute do something');
+            setTimeout(() => {
+                callback('Data'); // needs callback because we can't predict when the data will be available, so use callback instead of return
+            }, 2000);
+            console.log('execute do something second');
+        }
+
+        doSomething((data) => console.log(data));
+    </script>
+</body>
+</html>
