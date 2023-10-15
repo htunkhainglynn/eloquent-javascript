@@ -58,7 +58,7 @@
                 console.log('error:', error)
             })
 ```
-- #### Async/Await code
+- #### Async/Await code (1)
 ```
 async function fetchTodos() {
     let urls = ['https:// jsonplaceholder.typicode.com/todos/1',
@@ -77,8 +77,23 @@ async function fetchTodos() {
         }
 }
 
-  fetchTodos();
+fetchTodos();
 ```
+- #### Async/Await code (2)
+```
+async function getData() {
+    let urls = [
+        'https://jsonplaceholder.typicode.com/todos/1',
+        'https://jsonplaceholder.typicode.com/todos/2']
+
+    let promises = urls.map(url => fetch(url).then(response => response.json()));
+    for await (const response of promises) {  // async iteration
+        console.log('response:', response);   // works parallel, non blocking
+    }
+}
+getData();
+```
+
 - Then, you can write async nature code in imperative way.
 - But you lose the abilitiy to use railway oriented programming.
 
