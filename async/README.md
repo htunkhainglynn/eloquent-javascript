@@ -33,4 +33,55 @@
 - Promise.all() takes an array of Promises and returns a new Promise.
 - Promise.all() returns a Promise that fulfills when all of the promises in the array passed to it have been fulfilled.
 
+### Promise.all() vs Promise.setteldAll()
+- Promise.all() returns a Promise that fulfills when all of the promises in the array passed to it have been fulfilled. If not all of the promises passed to Promise.all() fulfill, the returned promise will reject.
+- Promise.setteldAll() returns a Promise that always fulfills with an array of the values or reasons of the passed promises, provided that all of the promises passed were settled (either fulfilled or rejected). If it was rejected, the array will contain the reason values.
 
+### Promise problem
+- Promise.then() doesn't look like imperative code.
+- What if we can write async nature code in imperative way?
+
+### Async/Await
+- Async/Await is a syntactic sugar for Promise.
+- #### Promise code.
+```
+        let urls = [
+            'https://jsonplaceholder.typicode.com/todos/1',
+            'https://jsonplaceholder.typicode.com/todos/2']
+
+        let promises = urls.map(url => fetch(url).then(response => response.json()));
+        Promise.all(promises)
+            .then(responses => {
+                console.log('response:', responses)
+            })
+            .catch(error => {
+                console.log('error:', error)
+            })
+```
+- #### Async/Await code
+```
+async function fetchTodos() {
+    let urls = ['https:// jsonplaceholder.typicode.com/todos/1',
+                'https://jsonplaceholder.typicode.com/todos/2'];
+
+    let promises = urls.map(async (url) => {
+                const response = await fetch(url);
+                return response.json();
+            });
+
+    try {
+        const responses = await Promise.all(promises);
+              console.log('response:', responses);
+        } catch (error) {
+                console.log('error:', error);
+        }
+}
+
+  fetchTodos();
+```
+- Then, you can write async nature code in imperative way.
+- But you lose the abilitiy to use railway oriented programming.
+
+### Behind the scene of async/await
+- It use generator and Promise.
+- await fetch(utr) is when the fetch is done, it yields the value and call next() with the response.

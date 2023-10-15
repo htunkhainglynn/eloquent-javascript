@@ -1,0 +1,15 @@
+<html>
+    <script>
+        let resolvePromise = Promise.resolve('resolve');
+        let rejectPromise = Promise.reject('reject');
+
+        let promises = [resolvePromise, rejectPromise];
+        Promise.all(promises)   // only run error callback if one of the promises is rejected
+            .then(responses => {
+                console.log('response:', responses)
+            })
+            .catch(error => {
+                console.log('error:', error)
+            })
+    </script>
+</html>

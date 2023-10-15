@@ -1,0 +1,27 @@
+<html>
+    <script>
+        async function fetchTodos() {
+            let urls = [
+                'https://jsonplaceholder.typicode.com/todos/1',
+                'https://jsonplaceholder.typicode.com/todos/2'
+            ];
+
+            let responses = [];
+
+            for (const url of urls) {
+                try {
+                    const response = await fetch(url);  // await blocks next line of code until fetch() returns
+                    const data = await response.json();
+                    responses.push(data);
+                } catch (error) {
+                    console.log('error:', error);
+                    return; // or handle the error as needed
+                }
+            }
+
+            console.log('response:', responses);
+        }
+
+        fetchTodos();
+    </script>
+</html>

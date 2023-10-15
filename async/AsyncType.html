@@ -1,0 +1,11 @@
+<html>
+    <script>
+        async function getData() {
+            return 20;  // if Promise.resolve(20) is returned, the result will be Promise {<fulfilled>: 20}, if it returns just 20, it boxes it in a Promise
+        }
+
+        // console.log(getData()); // Promise {<fulfilled>: 20}
+        // So, we can use then()
+        getData().then(data => console.log(data)); // 20
+    </script>
+</html>
